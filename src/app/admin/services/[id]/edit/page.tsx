@@ -29,6 +29,8 @@ export default function EditServicePage() {
     active: true,
   });
 
+  const [docs, setDocs] = useState([{ name_en: '', name_kn: '' }]);
+
   useEffect(() => {
     async function fetchData() {
       // Fetch categories
@@ -55,6 +57,13 @@ export default function EditServicePage() {
           active: service.active !== false,
         });
       }
+
+      // Fetch existing docs
+      const { data: existingDocs } = await supabase.from('service_documents').select('*').eq('service_id', params.id).order('display_order');
+      if (existingDocs && existingDocs.length > 0) {
+        setDocs(existingDocs.map(d => ({ name_en: d.document_name_en, name_kn: d.document_name_kn })));
+      }
+      
       setLoading(false);
     }
     fetchData();
@@ -64,16 +73,39 @@ export default function EditServicePage() {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
+  const handleDocChange = (index: number, field: string, value: string) => {
+    const newDocs = [...docs];
+    newDocs[index] = { ...newDocs[index], [field]: value };
+    setDocs(newDocs);
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSaving(true);
-    const { error } = await supabase.from('services').update(formData).eq('id', params.id);
-    if (error) {
-      alert('Error updating service: ' + error.message);
+    
+    const { error: serviceError } = await supabase.from('services').update(formData).eq('id', params.id);
+    
+    if (serviceError) {
+      alert('Error updating service: ' + serviceError.message);
       setSaving(false);
-    } else {
-      router.push('/admin/services');
+      return;
     }
+
+    // Update docs
+    await supabase.from('service_documents').delete().eq('service_id', params.id);
+    
+    const validDocs = docs.filter(d => d.name_en.trim() !== '');
+    if (validDocs.length > 0) {
+      const docsToInsert = validDocs.map((d, index) => ({
+        service_id: params.id,
+        document_name_en: d.name_en,
+        document_name_kn: d.name_kn || d.name_en,
+        display_order: index
+      }));
+      await supabase.from('service_documents').insert(docsToInsert);
+    }
+
+    router.push('/admin/services');
   };
 
   if (loading) return <div>Loading...</div>;
@@ -142,6 +174,36 @@ export default function EditServicePage() {
           </div>
         </div>
         
+        {/* Documents */}
+        <div>
+          <h2 className="text-lg font-semibold text-slate-900 border-b pb-2 mb-4">Required Documents</h2>
+          <div className="space-y-4">
+            {docs.map((doc, index) => (
+              <div key={index} className="flex gap-4 items-center">
+                <input 
+                  type="text" 
+                  value={doc.name_en} 
+                  onChange={(e) => handleDocChange(index, 'name_en', e.target.value)} 
+                  className="flex-1 border border-slate-300 rounded-lg p-3 outline-none focus:ring-2 focus:ring-blue-500 text-slate-900" 
+                  placeholder={`Document ${index + 1} (English)`} 
+                />
+                <input 
+                  type="text" 
+                  value={doc.name_kn} 
+                  onChange={(e) => handleDocChange(index, 'name_kn', e.target.value)} 
+                  className="flex-1 border border-slate-300 rounded-lg p-3 outline-none focus:ring-2 focus:ring-blue-500 text-slate-900" 
+                  placeholder={`Document ${index + 1} (Kannada)`} 
+                />
+                <button type="button" onClick={() => {
+                  const newDocs = docs.filter((_, i) => i !== index);
+                  setDocs(newDocs.length ? newDocs : [{ name_en: '', name_kn: '' }]);
+                }} className="text-red-500 hover:text-red-700 font-bold px-2">X</button>
+              </div>
+            ))}
+            <button type="button" onClick={() => setDocs([...docs, { name_en: '', name_kn: '' }])} className="text-blue-600 font-medium text-sm hover:underline">+ Add another document</button>
+          </div>
+        </div>
+
         <div className="flex justify-end pt-6">
           <button 
             type="submit" 

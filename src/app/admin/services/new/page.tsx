@@ -65,7 +65,7 @@ export default function NewServicePage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label className="block text-sm font-medium text-slate-700 mb-2">Category</label>
-              <select required name="category_id" value={formData.category_id} onChange={handleChange} className="w-full border border-slate-300 rounded-lg p-3 outline-none focus:ring-2 focus:ring-blue-500">
+              <select required name="category_id" value={formData.category_id} onChange={handleChange} className="w-full border border-slate-300 rounded-lg p-3 outline-none focus:ring-2 focus:ring-blue-500 text-slate-900">
                 <option value="">Select Category</option>
                 {categories.map(c => <option key={c.id} value={c.id}>{c.name_en}</option>)}
               </select>
@@ -73,20 +73,20 @@ export default function NewServicePage() {
             <div></div>
             <div>
               <label className="block text-sm font-medium text-slate-700 mb-2">Service Name (English)</label>
-              <input required type="text" name="name_en" value={formData.name_en} onChange={handleChange} className="w-full border border-slate-300 rounded-lg p-3 outline-none focus:ring-2 focus:ring-blue-500" />
+              <input required type="text" name="name_en" value={formData.name_en} onChange={handleChange} className="w-full border border-slate-300 rounded-lg p-3 outline-none focus:ring-2 focus:ring-blue-500 text-slate-900" />
             </div>
             <div>
               <label className="block text-sm font-medium text-slate-700 mb-2">Service Name (Kannada)</label>
-              <input required type="text" name="name_kn" value={formData.name_kn} onChange={handleChange} className="w-full border border-slate-300 rounded-lg p-3 outline-none focus:ring-2 focus:ring-blue-500" />
+              <input required type="text" name="name_kn" value={formData.name_kn} onChange={handleChange} className="w-full border border-slate-300 rounded-lg p-3 outline-none focus:ring-2 focus:ring-blue-500 text-slate-900" />
             </div>
             
             <div className="md:col-span-2">
               <label className="block text-sm font-medium text-slate-700 mb-2">Short Description (English)</label>
-              <textarea required name="short_description_en" value={formData.short_description_en} onChange={handleChange} className="w-full border border-slate-300 rounded-lg p-3 outline-none focus:ring-2 focus:ring-blue-500 h-24" />
+              <textarea required name="short_description_en" value={formData.short_description_en} onChange={handleChange} className="w-full border border-slate-300 rounded-lg p-3 outline-none focus:ring-2 focus:ring-blue-500 h-24 text-slate-900" />
             </div>
             <div className="md:col-span-2">
               <label className="block text-sm font-medium text-slate-700 mb-2">Short Description (Kannada)</label>
-              <textarea required name="short_description_kn" value={formData.short_description_kn} onChange={handleChange} className="w-full border border-slate-300 rounded-lg p-3 outline-none focus:ring-2 focus:ring-blue-500 h-24" />
+              <textarea required name="short_description_kn" value={formData.short_description_kn} onChange={handleChange} className="w-full border border-slate-300 rounded-lg p-3 outline-none focus:ring-2 focus:ring-blue-500 h-24 text-slate-900" />
             </div>
           </div>
         </div>
@@ -97,19 +97,19 @@ export default function NewServicePage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label className="block text-sm font-medium text-slate-700 mb-2">Fee Information (English)</label>
-              <input type="text" name="fee_information_en" value={formData.fee_information_en} onChange={handleChange} className="w-full border border-slate-300 rounded-lg p-3 outline-none focus:ring-2 focus:ring-blue-500" placeholder="e.g. ₹500" />
+              <input type="text" name="fee_information_en" value={formData.fee_information_en} onChange={handleChange} className="w-full border border-slate-300 rounded-lg p-3 outline-none focus:ring-2 focus:ring-blue-500 text-slate-900" placeholder="e.g. ₹500" />
             </div>
             <div>
               <label className="block text-sm font-medium text-slate-700 mb-2">Fee Information (Kannada)</label>
-              <input type="text" name="fee_information_kn" value={formData.fee_information_kn} onChange={handleChange} className="w-full border border-slate-300 rounded-lg p-3 outline-none focus:ring-2 focus:ring-blue-500" />
+              <input type="text" name="fee_information_kn" value={formData.fee_information_kn} onChange={handleChange} className="w-full border border-slate-300 rounded-lg p-3 outline-none focus:ring-2 focus:ring-blue-500 text-slate-900" />
             </div>
             <div>
               <label className="block text-sm font-medium text-slate-700 mb-2">Processing Time (English)</label>
-              <input type="text" name="processing_time_en" value={formData.processing_time_en} onChange={handleChange} className="w-full border border-slate-300 rounded-lg p-3 outline-none focus:ring-2 focus:ring-blue-500" placeholder="e.g. 3-5 working days" />
+              <input type="text" name="processing_time_en" value={formData.processing_time_en} onChange={handleChange} className="w-full border border-slate-300 rounded-lg p-3 outline-none focus:ring-2 focus:ring-blue-500 text-slate-900" placeholder="e.g. 3-5 working days" />
             </div>
             <div>
               <label className="block text-sm font-medium text-slate-700 mb-2">Processing Time (Kannada)</label>
-              <input type="text" name="processing_time_kn" value={formData.processing_time_kn} onChange={handleChange} className="w-full border border-slate-300 rounded-lg p-3 outline-none focus:ring-2 focus:ring-blue-500" />
+              <input type="text" name="processing_time_kn" value={formData.processing_time_kn} onChange={handleChange} className="w-full border border-slate-300 rounded-lg p-3 outline-none focus:ring-2 focus:ring-blue-500 text-slate-900" />
             </div>
           </div>
         </div>

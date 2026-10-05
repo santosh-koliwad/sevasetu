@@ -68,8 +68,20 @@ export default function AdminServices() {
                     </button>
                   </td>
                   <td className="p-4 text-right">
-                    {/* Add edit link if implemented */}
-                    <span className="text-slate-400 text-sm italic">Edit from DB for now</span>
+                    <Link href={`/admin/services/${service.id}/edit`} className="text-blue-600 hover:text-blue-800 text-sm font-medium mr-4">
+                      Edit
+                    </Link>
+                    <button 
+                      onClick={async () => {
+                        if(confirm('Are you sure you want to delete this service?')) {
+                          await supabase.from('services').delete().eq('id', service.id);
+                          fetchServices();
+                        }
+                      }}
+                      className="text-red-600 hover:text-red-800 text-sm font-medium"
+                    >
+                      Delete
+                    </button>
                   </td>
                 </tr>
               ))}

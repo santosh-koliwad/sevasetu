@@ -9,19 +9,29 @@ export default function ClientServices({ initialServices, categories, initialCat
   const { t } = useLanguage();
   const router = useRouter();
   
-  const [searchTerm, setSearchTerm] = useState(initialQuery);
-  const [selectedCategory, setSelectedCategory] = useState(initialCategory);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('');
+  const [filteredServices, setFilteredServices] = useState(initialServices);
+
+  useEffect(() => {
+    let result = initialServices;
+    if (selectedCategory) {
+      result = result.filter((s: any) => s.category_id === selectedCategory);
+    }
+    if (searchTerm) {
+      const lowerSearch = searchTerm.toLowerCase();
+      result = result.filter((s: any) => 
+        (s.name_en && s.name_en.toLowerCase().includes(lowerSearch)) || 
+        (s.name_kn && s.name_kn.toLowerCase().includes(lowerSearch)) ||
+        (s.short_description_en && s.short_description_en.toLowerCase().includes(lowerSearch))
+      );
+    }
+    setFilteredServices(result);
+  }, [searchTerm, selectedCategory, initialServices]);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    updateUrl();
-  };
-
-  const updateUrl = () => {
-    const params = new URLSearchParams();
-    if (selectedCategory) params.set('category', selectedCategory);
-    if (searchTerm) params.set('q', searchTerm);
-    router.push(`/services?${params.toString()}`);
+    // Filtering is handled by useEffect
   };
 
   return (
@@ -73,11 +83,11 @@ export default function ClientServices({ initialServices, categories, initialCat
         {/* Results */}
         <div className="mb-6 flex justify-between items-center">
           <h2 className="text-xl font-bold text-slate-800">
-            {initialServices.length} {t('services found', 'ಸೇವೆಗಳು ಕಂಡುಬಂದಿವೆ')}
+            {filteredServices.length} {t('services found', 'ಸೇವೆಗಳು ಕಂಡುಬಂದಿವೆ')}
           </h2>
         </div>
 
-        {initialServices.length === 0 ? (
+        {filteredServices.length === 0 ? (
           <div className="text-center py-20 bg-white rounded-2xl border border-slate-200">
             <Search className="w-16 h-16 text-slate-300 mx-auto mb-4" />
             <h3 className="text-xl font-bold text-slate-700 mb-2">{t('No services found', 'ಯಾವುದೇ ಸೇವೆಗಳು ಕಂಡುಬಂದಿಲ್ಲ')}</h3>
@@ -85,7 +95,7 @@ export default function ClientServices({ initialServices, categories, initialCat
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {initialServices.map((service: any) => (
+            {filteredServices.map((service: any) => (
               <div key={service.id} className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex flex-col hover:shadow-lg transition-shadow group">
                 <div className="p-6 flex-grow">
                   <div className="flex items-center gap-3 mb-4">

@@ -2,6 +2,14 @@ import { createClient } from '@/utils/supabase/server';
 import ClientServiceDetail from './ClientServiceDetail';
 import { notFound } from 'next/navigation';
 
+export const revalidate = 60;
+
+export async function generateStaticParams() {
+  // We can return an empty array to let it generate pages on demand (ISR),
+  // or fetch all active service IDs to pre-render them at build time.
+  return [];
+}
+
 export default async function ServiceDetailPage({ params }: { params: { id: string } }) {
   const supabase = await createClient();
   const { id } = await params; // Next.js 15 params

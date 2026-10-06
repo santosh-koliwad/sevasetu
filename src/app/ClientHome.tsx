@@ -64,29 +64,31 @@ export default function ClientHome({ settings, allServices }: any) {
             <div className="w-24 h-1 bg-blue-600 mx-auto mt-4 rounded-full"></div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {allServices?.map((service: any) => (
-              <div key={service.id} className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex flex-col hover:shadow-lg transition-shadow">
-                <div className="p-6 flex-grow">
-                  <div className="flex items-center gap-3 mb-4">
-                    <span className="text-3xl">{service.icon || '📝'}</span>
-                    <span className="text-xs font-semibold px-2 py-1 bg-blue-50 text-blue-700 rounded-full">
-                      {t(service.categories?.name_en, service.categories?.name_kn)}
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+            {allServices?.map((service: any, index: number) => {
+              const colors = [
+                'bg-blue-500', 'bg-green-500', 'bg-amber-500', 'bg-purple-500', 
+                'bg-rose-500', 'bg-teal-500', 'bg-indigo-500', 'bg-orange-500'
+              ];
+              const bgColor = colors[index % colors.length];
+
+              return (
+                <Link 
+                  key={service.id} 
+                  href={`/services/${service.id}`}
+                  className={`${bgColor} rounded-3xl p-6 shadow-md hover:shadow-xl transition-all transform hover:-translate-y-1 flex flex-col items-center justify-center text-center aspect-square`}
+                >
+                  <div className="bg-white/20 p-4 rounded-full mb-4">
+                    <span className="text-5xl md:text-6xl text-white drop-shadow-md">
+                      {service.icon || '📝'}
                     </span>
                   </div>
-                  <h3 className="text-xl font-bold text-slate-900 mb-2">{t(service.name_en, service.name_kn)}</h3>
-                  <p className="text-slate-600 text-sm mb-4 line-clamp-2">
-                    {t(service.short_description_en, service.short_description_kn)}
-                  </p>
-                </div>
-                <div className="px-6 py-4 border-t border-slate-100 bg-slate-50 mt-auto">
-                  <Link href={`/services/${service.id}`} className="flex items-center justify-between text-blue-600 font-medium hover:text-blue-800">
-                    <span>{t('View Details', 'ವಿವರಗಳನ್ನು ವೀಕ್ಷಿಸಿ')}</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </Link>
-                </div>
-              </div>
-            ))}
+                  <h3 className="text-lg md:text-xl font-extrabold text-white leading-tight drop-shadow-sm">
+                    {t(service.name_en, service.name_kn)}
+                  </h3>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>

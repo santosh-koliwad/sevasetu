@@ -1,17 +1,16 @@
 'use client';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { createClient } from '@/utils/supabase/client';
-import { ArrowLeft, CheckSquare, Clock, Info, CreditCard, ChevronDown, ChevronUp, Send } from 'lucide-react';
+import { ArrowLeft, CheckSquare, Send } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
-export default function ClientServiceDetail({ service, documents, faqs }: any) {
+export default function ClientServiceDetail({ service, documents }: any) {
   const { t } = useLanguage();
   const router = useRouter();
   const supabase = createClient();
   
-  const [openFaq, setOpenFaq] = useState<string | null>(null);
   const [showRequestModal, setShowRequestModal] = useState(false);
   const [requestData, setRequestData] = useState({ name: '', mobile: '', email: '', date: '', message: '' });
   const [submitting, setSubmitting] = useState(false);

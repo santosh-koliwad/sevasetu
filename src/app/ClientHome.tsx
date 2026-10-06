@@ -1,7 +1,7 @@
 'use client';
 import { useLanguage } from '@/contexts/LanguageContext';
 import Link from 'next/link';
-import { ArrowRight, FileText, CheckCircle2, UserPlus, Send } from 'lucide-react';
+import { FileText, CheckCircle2, UserPlus, Send } from 'lucide-react';
 
 export default function ClientHome({ settings, allServices }: any) {
   const { t } = useLanguage();

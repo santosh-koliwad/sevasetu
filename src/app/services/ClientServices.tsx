@@ -1,7 +1,7 @@
 'use client';
 import { useLanguage } from '@/contexts/LanguageContext';
 import Link from 'next/link';
-import { Search, Filter, ArrowRight } from 'lucide-react';
+import { Search, Filter } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 

@@ -11,23 +11,19 @@ export default function ClientServices({ initialServices, categories, initialCat
   
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
-  const [filteredServices, setFilteredServices] = useState(initialServices);
 
-  useEffect(() => {
-    let result = initialServices;
-    if (selectedCategory) {
-      result = result.filter((s: any) => s.category_id === selectedCategory);
-    }
-    if (searchTerm) {
-      const lowerSearch = searchTerm.toLowerCase();
-      result = result.filter((s: any) => 
-        (s.name_en && s.name_en.toLowerCase().includes(lowerSearch)) || 
-        (s.name_kn && s.name_kn.toLowerCase().includes(lowerSearch)) ||
-        (s.short_description_en && s.short_description_en.toLowerCase().includes(lowerSearch))
-      );
-    }
-    setFilteredServices(result);
-  }, [searchTerm, selectedCategory, initialServices]);
+  let filteredServices = initialServices;
+  if (selectedCategory) {
+    filteredServices = filteredServices.filter((s: any) => s.category_id === selectedCategory);
+  }
+  if (searchTerm) {
+    const lowerSearch = searchTerm.toLowerCase();
+    filteredServices = filteredServices.filter((s: any) => 
+      (s.name_en && s.name_en.toLowerCase().includes(lowerSearch)) || 
+      (s.name_kn && s.name_kn.toLowerCase().includes(lowerSearch)) ||
+      (s.short_description_en && s.short_description_en.toLowerCase().includes(lowerSearch))
+    );
+  }
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();

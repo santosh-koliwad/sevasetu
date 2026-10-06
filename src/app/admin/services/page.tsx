@@ -9,10 +9,6 @@ export default function AdminServices() {
   const [services, setServices] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    fetchServices();
-  }, [supabase]);
-
   const fetchServices = async () => {
     const { data } = await supabase
       .from('services')
@@ -21,6 +17,10 @@ export default function AdminServices() {
     if (data) setServices(data);
     setLoading(false);
   };
+
+  useEffect(() => {
+    fetchServices();
+  }, [supabase]);
 
   const toggleStatus = async (id: string, currentStatus: boolean) => {
     await supabase.from('services').update({ active: !currentStatus }).eq('id', id);

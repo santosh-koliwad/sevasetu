@@ -8,10 +8,6 @@ export default function AdminRequests() {
   const [requests, setRequests] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    fetchRequests();
-  }, [supabase]);
-
   const fetchRequests = async () => {
     const { data } = await supabase
       .from('service_requests')
@@ -20,6 +16,10 @@ export default function AdminRequests() {
     if (data) setRequests(data);
     setLoading(false);
   };
+
+  useEffect(() => {
+    fetchRequests();
+  }, [supabase]);
 
   const updateStatus = async (id: string, newStatus: string) => {
     await supabase.from('service_requests').update({ status: newStatus }).eq('id', id);

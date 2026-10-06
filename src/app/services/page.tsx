@@ -1,10 +1,10 @@
-import { createClient } from '@/utils/supabase/server';
+import { createPublicClient } from '@/utils/supabase/public';
 import ClientServices from './ClientServices';
 
 export const revalidate = 60;
 
 export default async function ServicesPage() {
-  const supabase = await createClient();
+  const supabase = createPublicClient();
   
   // Fetch categories for filter
   const { data: categories } = await supabase.from('categories').select('*').eq('active', true).order('created_at', { ascending: true });

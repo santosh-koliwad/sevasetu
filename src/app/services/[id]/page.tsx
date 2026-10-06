@@ -1,4 +1,4 @@
-import { createClient } from '@/utils/supabase/server';
+import { createPublicClient } from '@/utils/supabase/public';
 import ClientServiceDetail from './ClientServiceDetail';
 import { notFound } from 'next/navigation';
 
@@ -11,7 +11,7 @@ export async function generateStaticParams() {
 }
 
 export default async function ServiceDetailPage({ params }: { params: { id: string } }) {
-  const supabase = await createClient();
+  const supabase = createPublicClient();
   const { id } = await params; // Next.js 15 params
 
   const { data: service, error } = await supabase

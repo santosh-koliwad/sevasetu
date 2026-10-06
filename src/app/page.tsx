@@ -4,6 +4,8 @@ import Image from 'next/image';
 import { ArrowRight, FileText, CheckCircle2, MapPin } from 'lucide-react';
 import ClientHome from './ClientHome';
 
+export const revalidate = 60; // Cache the page for 60 seconds (ISR)
+
 export default async function Home() {
   const supabase = await createClient();
   

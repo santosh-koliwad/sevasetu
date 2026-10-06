@@ -1,6 +1,8 @@
 import { createClient } from '@/utils/supabase/server';
 import ClientServices from './ClientServices';
 
+export const revalidate = 60;
+
 export default async function ServicesPage({ searchParams }: { searchParams: { category?: string, q?: string } }) {
   const supabase = await createClient();
   const search = await searchParams; // Wait for search params Next.js 15

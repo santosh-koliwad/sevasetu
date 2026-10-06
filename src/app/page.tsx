@@ -9,14 +9,13 @@ export default async function Home() {
   
   const { data: settings } = await supabase.from('site_settings').select('*').eq('id', 1).single();
   const { data: categories } = await supabase.from('categories').select('*').eq('active', true).order('created_at', { ascending: true }).limit(8);
-  const { data: popularServices } = await supabase.from('services').select('*, categories(name_en, name_kn)').eq('active', true).eq('featured', true).limit(6);
+  const { data: allServices } = await supabase.from('services').select('*, categories(name_en, name_kn)').eq('active', true).order('created_at', { ascending: false });
 
   return (
     <div className="flex flex-col min-h-screen">
       <ClientHome 
         settings={settings} 
-        categories={categories || []} 
-        popularServices={popularServices || []} 
+        allServices={allServices || []} 
       />
     </div>
   );

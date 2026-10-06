@@ -3,7 +3,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import Link from 'next/link';
 import { ArrowRight, FileText, CheckCircle2, UserPlus, Send } from 'lucide-react';
 
-export default function ClientHome({ settings, categories, popularServices }: any) {
+export default function ClientHome({ settings, allServices }: any) {
   const { t } = useLanguage();
 
   return (
@@ -56,40 +56,16 @@ export default function ClientHome({ settings, categories, popularServices }: an
         </div>
       </section>
 
-      {/* Categories */}
-      <section className="py-16 bg-slate-50 border-t border-slate-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-end mb-10">
-            <div>
-              <h2 className="text-3xl font-bold text-slate-900">{t('Service Categories', 'ಸೇವಾ ವರ್ಗಗಳು')}</h2>
-              <div className="w-24 h-1 bg-green-500 mt-4 rounded-full"></div>
-            </div>
-            <Link href="/services" className="text-blue-600 font-medium hover:text-blue-800 flex items-center gap-1">
-              {t('View All', 'ಎಲ್ಲವನ್ನೂ ವೀಕ್ಷಿಸಿ')} <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-            {categories?.map((cat: any) => (
-              <Link key={cat.id} href={`/services?category=${cat.id}`} className="bg-white p-6 rounded-xl shadow-sm border border-slate-200 hover:shadow-md hover:border-blue-300 transition-all group flex flex-col items-center text-center">
-                <div className="text-4xl mb-3 group-hover:scale-110 transition-transform">{cat.icon || '📄'}</div>
-                <h3 className="font-semibold text-slate-800">{t(cat.name_en, cat.name_kn)}</h3>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Popular Services */}
+      {/* All Services */}
       <section className="py-16 bg-white border-t border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-slate-900">{t('Popular Services', 'ಜನಪ್ರಿಯ ಸೇವೆಗಳು')}</h2>
+            <h2 className="text-3xl font-bold text-slate-900">{t('Available Services', 'ಲಭ್ಯವಿರುವ ಸೇವೆಗಳು')}</h2>
             <div className="w-24 h-1 bg-blue-600 mx-auto mt-4 rounded-full"></div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {popularServices?.map((service: any) => (
+            {allServices?.map((service: any) => (
               <div key={service.id} className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex flex-col hover:shadow-lg transition-shadow">
                 <div className="p-6 flex-grow">
                   <div className="flex items-center gap-3 mb-4">

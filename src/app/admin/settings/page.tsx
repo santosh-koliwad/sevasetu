@@ -60,27 +60,27 @@ export default function AdminSettings() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label className="block text-sm font-medium text-slate-700 mb-1">Shop Name</label>
-                <input type="text" name="shop_name" value={settings.shop_name || ''} onChange={handleChange} className="w-full p-2 border border-slate-300 rounded-md focus:ring-blue-500 focus:border-blue-500" />
+                <input type="text" name="shop_name" value={settings.shop_name || ''} onChange={handleChange} className="w-full p-2 border border-slate-300 rounded-md focus:ring-blue-500 focus:border-blue-500 text-slate-900" />
               </div>
               <div>
                 <label className="block text-sm font-medium text-slate-700 mb-1">Phone Number</label>
-                <input type="text" name="phone" value={settings.phone || ''} onChange={handleChange} className="w-full p-2 border border-slate-300 rounded-md focus:ring-blue-500 focus:border-blue-500" />
+                <input type="text" name="phone" value={settings.phone || ''} onChange={handleChange} className="w-full p-2 border border-slate-300 rounded-md focus:ring-blue-500 focus:border-blue-500 text-slate-900" />
               </div>
               <div>
                 <label className="block text-sm font-medium text-slate-700 mb-1">WhatsApp Number (incl. country code, no +)</label>
-                <input type="text" name="whatsapp" value={settings.whatsapp || ''} onChange={handleChange} className="w-full p-2 border border-slate-300 rounded-md focus:ring-blue-500 focus:border-blue-500" placeholder="e.g. 919876543210" />
+                <input type="text" name="whatsapp" value={settings.whatsapp || ''} onChange={handleChange} className="w-full p-2 border border-slate-300 rounded-md focus:ring-blue-500 focus:border-blue-500 text-slate-900" placeholder="e.g. 919876543210" />
               </div>
               <div>
                 <label className="block text-sm font-medium text-slate-700 mb-1">Email</label>
-                <input type="email" name="email" value={settings.email || ''} onChange={handleChange} className="w-full p-2 border border-slate-300 rounded-md focus:ring-blue-500 focus:border-blue-500" />
+                <input type="email" name="email" value={settings.email || ''} onChange={handleChange} className="w-full p-2 border border-slate-300 rounded-md focus:ring-blue-500 focus:border-blue-500 text-slate-900" />
               </div>
               <div className="md:col-span-2">
                 <label className="block text-sm font-medium text-slate-700 mb-1">Address (English)</label>
-                <textarea name="address_en" value={settings.address_en || ''} onChange={handleChange} rows={2} className="w-full p-2 border border-slate-300 rounded-md focus:ring-blue-500 focus:border-blue-500" />
+                <textarea name="address_en" value={settings.address_en || ''} onChange={handleChange} rows={2} className="w-full p-2 border border-slate-300 rounded-md focus:ring-blue-500 focus:border-blue-500 text-slate-900" />
               </div>
               <div className="md:col-span-2">
                 <label className="block text-sm font-medium text-slate-700 mb-1">Address (Kannada)</label>
-                <textarea name="address_kn" value={settings.address_kn || ''} onChange={handleChange} rows={2} className="w-full p-2 border border-slate-300 rounded-md focus:ring-blue-500 focus:border-blue-500" />
+                <textarea name="address_kn" value={settings.address_kn || ''} onChange={handleChange} rows={2} className="w-full p-2 border border-slate-300 rounded-md focus:ring-blue-500 focus:border-blue-500 text-slate-900" />
               </div>
             </div>
           </div>
@@ -91,19 +91,19 @@ export default function AdminSettings() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label className="block text-sm font-medium text-slate-700 mb-1">Hero Title (English)</label>
-                <input type="text" name="hero_title_en" value={settings.hero_title_en || ''} onChange={handleChange} className="w-full p-2 border border-slate-300 rounded-md focus:ring-blue-500 focus:border-blue-500" />
+                <input type="text" name="hero_title_en" value={settings.hero_title_en || ''} onChange={handleChange} className="w-full p-2 border border-slate-300 rounded-md focus:ring-blue-500 focus:border-blue-500 text-slate-900" />
               </div>
               <div>
                 <label className="block text-sm font-medium text-slate-700 mb-1">Hero Title (Kannada)</label>
-                <input type="text" name="hero_title_kn" value={settings.hero_title_kn || ''} onChange={handleChange} className="w-full p-2 border border-slate-300 rounded-md focus:ring-blue-500 focus:border-blue-500" />
+                <input type="text" name="hero_title_kn" value={settings.hero_title_kn || ''} onChange={handleChange} className="w-full p-2 border border-slate-300 rounded-md focus:ring-blue-500 focus:border-blue-500 text-slate-900" />
               </div>
               <div className="md:col-span-2">
                 <label className="block text-sm font-medium text-slate-700 mb-1">Hero Subtitle (English)</label>
-                <textarea name="hero_description_en" value={settings.hero_description_en || ''} onChange={handleChange} rows={2} className="w-full p-2 border border-slate-300 rounded-md focus:ring-blue-500 focus:border-blue-500" />
+                <textarea name="hero_description_en" value={settings.hero_description_en || ''} onChange={handleChange} rows={2} className="w-full p-2 border border-slate-300 rounded-md focus:ring-blue-500 focus:border-blue-500 text-slate-900" />
               </div>
               <div className="md:col-span-2">
                 <label className="block text-sm font-medium text-slate-700 mb-1">Hero Subtitle (Kannada)</label>
-                <textarea name="hero_description_kn" value={settings.hero_description_kn || ''} onChange={handleChange} rows={2} className="w-full p-2 border border-slate-300 rounded-md focus:ring-blue-500 focus:border-blue-500" />
+                <textarea name="hero_description_kn" value={settings.hero_description_kn || ''} onChange={handleChange} rows={2} className="w-full p-2 border border-slate-300 rounded-md focus:ring-blue-500 focus:border-blue-500 text-slate-900" />
               </div>
             </div>
           </div>

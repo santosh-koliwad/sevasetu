@@ -69,7 +69,7 @@ export default function AdminRequests() {
                     <select 
                       value={req.status} 
                       onChange={(e) => updateStatus(req.id, e.target.value)}
-                      className="text-sm border border-slate-300 rounded p-1 outline-none focus:ring-1 focus:ring-blue-500"
+                      className="text-sm border border-slate-300 rounded p-1 outline-none focus:ring-1 focus:ring-blue-500 text-slate-900"
                     >
                       <option value="New">New</option>
                       <option value="Contacted">Contacted</option>
